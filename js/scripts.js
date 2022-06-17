@@ -47,16 +47,16 @@ $(document).ready(function() {
   $("form#pizza-selections").submit(function(event) {
     event.preventDefault();
     
-    let size = $("input:radio[name=size]:checked").val();
+    const inputtedSize = $("input:radio[name=size]:checked").val();
 
-    let toppings = [];
+    const inputtedToppings = [];
     $("input:checkbox[name=toppings]:checked").each(function(){
-      toppings.push($(this).val());
+      inputtedToppings.push($(this).val());
     });
 
     $("#total").html(`Nice creation, we love your pizza! Your total is $${this.totalCost}."`);
 
-    let firstPizza = new Pizza(toppings, size);
+    let firstPizza = new Pizza(inputtedToppings, inputtedSize);
     
   });
 });
