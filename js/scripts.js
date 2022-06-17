@@ -1,6 +1,5 @@
 // Business logic
 
-const firstPizza = new Pizza();
 
 function Pizza(toppings, size) {
   this.size = size;
@@ -45,12 +44,19 @@ Pizza.prototype.totalCost = function(){
 
 
 $(document).ready(function() {
-  $("form#").submit(function(event) {
-  event.preventDefault();
+  $("form#pizza-selections").submit(function(event) {
+    event.preventDefault();
+    
+    let size = $("input:radio[name=size]:checked").val();
 
-  const size = $("input:radio[name=size]:checked").val();
+    let toppings = [];
+    $("input:checkbox[name=toppings]:checked").each(function(){
+      toppings.push($(this).val());
+    });
 
-  let toppings = $("input:checkbox[name=toppings-checkbox]:checked").val();
-  
+    $("#total").html(`Nice creation, we love your pizza! Your total is $${this.totalCost}."`);
+
+    let firstPizza = new Pizza(toppings, size);
+    
   });
 });
